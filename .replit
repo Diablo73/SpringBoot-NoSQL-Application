@@ -1,2 +1,2 @@
 language = "bash"
-run = "git pull origin master && mvn clean package -U && java -jar target/SpringBoot-NoSQL-Application-0.0.1-SNAPSHOT.jar"
+run = "git pull origin master && mvn package -U && java -jar target/SpringBoot-NoSQL-Application-0.0.1-SNAPSHOT.jar"
