@@ -1,4 +1,4 @@
-package com.diablo73.springApps.SpringBootNoSQLApplication.Controllers;
+package com.diablo73.springApps.springBootNoSQLApplication.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

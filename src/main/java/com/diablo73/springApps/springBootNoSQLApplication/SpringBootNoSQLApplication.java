@@ -1,4 +1,4 @@
-package com.diablo73.springApps.SpringBootNoSQLApplication;
+package com.diablo73.springApps.springBootNoSQLApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

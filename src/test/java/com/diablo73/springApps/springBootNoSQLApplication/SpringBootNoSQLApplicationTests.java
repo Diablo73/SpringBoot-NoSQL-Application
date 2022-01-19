@@ -1,4 +1,4 @@
-package com.diablo73.springApps.SpringBootNoSQLApplication;
+package com.diablo73.springApps.springBootNoSQLApplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
