@@ -36,3 +36,6 @@ build/
 mvnw*
 *.jar
 .mvn
+.run
+/**/**/application-local.properties
+/**/**/Secrets.json
