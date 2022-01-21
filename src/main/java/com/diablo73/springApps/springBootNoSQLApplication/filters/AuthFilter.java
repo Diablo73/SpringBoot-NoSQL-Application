@@ -1,6 +1,6 @@
 package com.diablo73.springApps.springBootNoSQLApplication.filters;
 
-import com.diablo73.springApps.springBootNoSQLApplication.constants.APIConstants;
+import com.diablo73.springApps.springBootNoSQLApplication.constants.APIConstantEnum;
 import com.diablo73.springApps.springBootNoSQLApplication.constants.enums.ResultInfoEnum;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Response;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseBody;
@@ -35,10 +35,10 @@ public class AuthFilter implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-		if (authCheckPass(httpServletRequest)) {
+		if (authCheckPass(httpServletRequest) && pathAndMethodAvailable()) {
 			filterChain.doFilter(servletRequest, servletResponse);
 		} else {
-			servletResponse.getWriter().write(objectMapper.writeValueAsString(createAuthFailedResponse(httpServletRequest.getContextPath())));
+			servletResponse.getWriter().write(objectMapper.writeValueAsString(createAuthFailedResponse(httpServletRequest.getServletPath())));
 			return;
 		}
 	}
@@ -50,11 +50,11 @@ public class AuthFilter implements Filter {
 
 	private boolean authCheckPass(HttpServletRequest httpServletRequest) {
 
-		if (!httpServletRequest.getContextPath().isEmpty()) {
+		if (!httpServletRequest.getServletPath().isEmpty()) {
 			String auth64Encoded = httpServletRequest.getHeader("authorization");
 			if (ObjectUtils.allNotNull(auth64Encoded)) {
 				String auth64Decoded = new String(Base64.getDecoder().decode(auth64Encoded.substring(6)));
-				return Arrays.stream(System.getenv("auth").split("\\,")).anyMatch(auth64Decoded::equals);
+				return Arrays.asList(System.getenv("auth").split("\\,")).contains(auth64Decoded);
 			} else {
 				return false;
 			}
@@ -62,14 +62,20 @@ public class AuthFilter implements Filter {
 		return true;
 	}
 
-	private Response createAuthFailedResponse(String contextPath) {
+
+	private boolean pathAndMethodAvailable() {
+//		TODO
+		return true;
+	}
+
+	private Response createAuthFailedResponse(String servletPath) {
 
 		Response response = new Response();
 		ResponseHead responseHead = new ResponseHead();
 		ResponseBody responseBody = new ResponseBody();
 
 		responseHead.setResponseTime(new Date());
-		responseHead.setFunction(contextPath.isEmpty() ? APIConstants.DEFAULT_MESSAGE : contextPath);
+		responseHead.setFunction(servletPath.isEmpty() ? APIConstantEnum.DEFAULT_MESSAGE.getApiName() : servletPath);
 		responseBody.setResultInfo(new ResultInfo(ResultInfoEnum.AUTH_CHECK_FAILED));
 
 		response.setHead(responseHead);
