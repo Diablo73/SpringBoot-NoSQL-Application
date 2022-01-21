@@ -7,8 +7,7 @@ import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Re
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseHead;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResultInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.core.annotation.Order;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -36,20 +35,31 @@ public class AuthFilter implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-		String auth64 = new String(Base64.getDecoder().decode(httpServletRequest.getHeader("authorization").substring(6)));
-		if (Arrays.stream(System.getenv("auth").split("\\,")).noneMatch(auth64::equals) &&
-				!StringUtils.EMPTY.equals(httpServletRequest.getContextPath())) {
-
+		if (authCheckPass(httpServletRequest)) {
+			filterChain.doFilter(servletRequest, servletResponse);
+		} else {
 			servletResponse.getWriter().write(objectMapper.writeValueAsString(createAuthFailedResponse(httpServletRequest.getContextPath())));
 			return;
 		}
-
-		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
 	@Override
 	public void destroy() {
 		Filter.super.destroy();
+	}
+
+	private boolean authCheckPass(HttpServletRequest httpServletRequest) {
+
+		if (!httpServletRequest.getContextPath().isEmpty()) {
+			String auth64Encoded = httpServletRequest.getHeader("authorization");
+			if (ObjectUtils.allNotNull(auth64Encoded)) {
+				String auth64Decoded = new String(Base64.getDecoder().decode(auth64Encoded.substring(6)));
+				return Arrays.stream(System.getenv("auth").split("\\,")).anyMatch(auth64Decoded::equals);
+			} else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private Response createAuthFailedResponse(String contextPath) {
