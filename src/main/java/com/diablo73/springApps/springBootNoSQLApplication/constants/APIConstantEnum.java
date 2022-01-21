@@ -6,8 +6,10 @@ import org.springframework.http.HttpMethod;
 @Getter
 public enum APIConstantEnum {
 
-	BLANK("", APIPathConstants.BLANK, HttpMethod.GET),
-	DEFAULT_MESSAGE("default", APIPathConstants.DEFAULT_MESSAGE, HttpMethod.GET),
+	BLANK_GET("", APIPathConstants.BLANK, HttpMethod.GET),
+	BLANK_POST("", APIPathConstants.BLANK, HttpMethod.POST),
+	DEFAULT_MESSAGE_GET("default", APIPathConstants.DEFAULT_MESSAGE, HttpMethod.GET),
+	DEFAULT_MESSAGE_POST("default", APIPathConstants.DEFAULT_MESSAGE, HttpMethod.POST),
 	RECORD_BY_DOCUMENT_ID("record.documentId", APIPathConstants.RECORD_BY_DOCUMENT_ID, HttpMethod.POST),
 
 

@@ -75,7 +75,10 @@ public class AuthFilter implements Filter {
 		ResponseBody responseBody = new ResponseBody();
 
 		responseHead.setResponseTime(new Date());
-		responseHead.setFunction(servletPath.isEmpty() ? APIConstantEnum.DEFAULT_MESSAGE.getApiName() : servletPath);
+		responseHead.setFunction(
+				APIConstantEnum.BLANK_GET.getApiPath().equals(servletPath)
+				? APIConstantEnum.DEFAULT_MESSAGE_GET.getApiName()
+				: servletPath);
 		responseBody.setResultInfo(new ResultInfo(ResultInfoEnum.AUTH_CHECK_FAILED));
 
 		response.setHead(responseHead);
