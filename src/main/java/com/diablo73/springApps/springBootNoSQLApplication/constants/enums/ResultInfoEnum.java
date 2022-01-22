@@ -6,6 +6,9 @@ import lombok.Getter;
 public enum ResultInfoEnum {
 
 	AUTH_CHECK_FAILED("0000", "INTRUDER", "Basic authentication failed!!!"),
+	WRONG_FUNCTION("0001", "ILLEGAL_API", "Mismatch in API name and function!!!"),
+	WRONG_DOCUMENT_ID("0002", "ILLEGAL_DOCUMENT_ID", "DocumentId provided is wrong!!!"),
+
 
 	SUCCESS("1000", "SUCCESS", "Successful!!!"),
 
