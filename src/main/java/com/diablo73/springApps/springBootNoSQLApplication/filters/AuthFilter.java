@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 
-//@Order(0)
 @Component("authFilter")
 public class AuthFilter implements Filter {
 
@@ -74,7 +73,7 @@ public class AuthFilter implements Filter {
 		ResponseHead responseHead = new ResponseHead();
 		ResponseBody responseBody = new ResponseBody();
 
-		responseHead.setResponseTime(new Date());
+		responseHead.setResponseTime(String.valueOf(new Date()));
 		responseHead.setFunction(
 				APIConstantEnum.BLANK_GET.getApiPath().equals(servletPath)
 				? APIConstantEnum.DEFAULT_MESSAGE_GET.getApiName()

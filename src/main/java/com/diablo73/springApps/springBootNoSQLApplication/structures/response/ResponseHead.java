@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +14,7 @@ import java.util.Date;
 public class ResponseHead {
 
 	String function;
-	Date responseTime;
+	String responseTime;
 
 	public ResponseHead(String apiName) {
 		this.setFunction(apiName);

@@ -16,6 +16,6 @@ import java.util.Map;
 public class ResponseBody {
 
 	ResultInfo resultInfo;
-	Map<String, Object> document;
-	String data;
+	Map<String, Object> documentList;
+
 }
