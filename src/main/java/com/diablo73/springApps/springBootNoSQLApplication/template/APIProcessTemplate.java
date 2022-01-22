@@ -12,6 +12,8 @@ public interface APIProcessTemplate<REQUEST, RESULT, RESPONSE> {
 
 	RESPONSE convertResponse(RESULT result);
 
-	RESPONSE composeResultInfo(ResultInfoEnum resultInfoEnum);
+	RESPONSE composeResultInfo();
+
+	RESPONSE composeFailResultInfo(ResultInfoEnum resultInfoEnum);
 
 }

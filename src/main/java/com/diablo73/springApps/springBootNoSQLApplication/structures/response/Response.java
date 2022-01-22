@@ -16,8 +16,8 @@ public class Response {
 	ResponseHead head;
 	ResponseBody body;
 
-	public Response(String apiName) {
-		this.setHead(new ResponseHead(apiName));
-		this.setBody(new ResponseBody());
+
+	public Response(ResponseBody responseBody) {
+		this.body = responseBody;
 	}
 }

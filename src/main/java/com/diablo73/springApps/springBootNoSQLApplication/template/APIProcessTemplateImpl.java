@@ -17,9 +17,11 @@ public class APIProcessTemplateImpl {
 
 			response = processCallback.convertResponse(result);
 
+			response = processCallback.composeResultInfo();
+
 		} catch (ParamValidatorException e) {
 
-			response = processCallback.composeResultInfo(e.getResultInfoEnum());
+			response = processCallback.composeFailResultInfo(e.getResultInfoEnum());
 
 		} catch (Exception e) {
 

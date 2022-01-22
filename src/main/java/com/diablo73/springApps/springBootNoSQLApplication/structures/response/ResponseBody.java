@@ -17,5 +17,6 @@ public class ResponseBody {
 
 	ResultInfo resultInfo;
 	Map<String, Object> documentList;
+	Integer documentCount;
 
 }
