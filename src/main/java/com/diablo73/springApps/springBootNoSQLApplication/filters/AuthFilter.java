@@ -1,6 +1,7 @@
 package com.diablo73.springApps.springBootNoSQLApplication.filters;
 
 import com.diablo73.springApps.springBootNoSQLApplication.constants.APIConstantEnum;
+import com.diablo73.springApps.springBootNoSQLApplication.constants.APIPathConstants;
 import com.diablo73.springApps.springBootNoSQLApplication.constants.enums.ResultInfoEnum;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Response;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseBody;
@@ -49,7 +50,7 @@ public class AuthFilter implements Filter {
 
 	private boolean authCheckPass(HttpServletRequest httpServletRequest) {
 
-		if (!httpServletRequest.getServletPath().isEmpty()) {
+		if (!APIPathConstants.BLANK.equals(httpServletRequest.getServletPath())) {
 			String auth64Encoded = httpServletRequest.getHeader("authorization");
 			if (ObjectUtils.allNotNull(auth64Encoded)) {
 				String auth64Decoded = new String(Base64.getDecoder().decode(auth64Encoded.substring(6)));
