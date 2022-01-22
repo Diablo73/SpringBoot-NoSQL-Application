@@ -5,7 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ResultInfoEnum {
 
-	AUTH_CHECK_FAILED("0000", "INTRUDER", "Basic authentication failed"),
+	AUTH_CHECK_FAILED("0000", "INTRUDER", "Basic authentication failed!!!"),
+
+	SUCCESS("1000", "SUCCESS", "Successful!!!"),
 
 	;
 
