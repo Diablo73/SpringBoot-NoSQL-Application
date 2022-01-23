@@ -10,7 +10,7 @@ public enum APIConstantEnum {
 	BLANK_POST("", APIPathConstants.BLANK, HttpMethod.POST),
 	DEFAULT_MESSAGE_GET("default", APIPathConstants.DEFAULT_MESSAGE, HttpMethod.GET),
 	DEFAULT_MESSAGE_POST("default", APIPathConstants.DEFAULT_MESSAGE, HttpMethod.POST),
-	RECORD_BY_DOCUMENT_ID("record.documentId", APIPathConstants.RECORD_BY_DOCUMENT_ID, HttpMethod.POST),
+	GET_RECORD_BY_DOCUMENT_ID("record.documentId", APIPathConstants.GET_RECORD_BY_DOCUMENT_ID, HttpMethod.POST),
 
 
 	;

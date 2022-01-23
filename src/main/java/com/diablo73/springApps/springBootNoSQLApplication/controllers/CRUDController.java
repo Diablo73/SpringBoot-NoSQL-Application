@@ -45,7 +45,7 @@ public class CRUDController extends CommonController {
 	}
 
 
-	@PostMapping(value = APIPathConstants.RECORD_BY_DOCUMENT_ID, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = APIPathConstants.GET_RECORD_BY_DOCUMENT_ID, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> getDocumentByDocumentIdController(@RequestBody Map<String, Object> requestMap) {
 
 		Request request = MapperUtil.convert2RequestObject(requestMap);

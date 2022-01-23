@@ -8,7 +8,6 @@ import com.diablo73.springApps.springBootNoSQLApplication.core.service.CRUDServi
 import com.diablo73.springApps.springBootNoSQLApplication.structures.request.Request;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Response;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseBody;
-import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseHead;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResultInfo;
 import com.diablo73.springApps.springBootNoSQLApplication.template.APIProcessTemplate;
 import com.diablo73.springApps.springBootNoSQLApplication.template.APIProcessTemplateImpl;
@@ -36,7 +35,7 @@ public class CRUDServiceImpl implements CRUDService {
 
 					@Override
 					public void validate() {
-						ParamValidatorUtil.checkFunction(APIConstantEnum.RECORD_BY_DOCUMENT_ID,request.getHead().getFunction());
+						ParamValidatorUtil.checkFunction(APIConstantEnum.GET_RECORD_BY_DOCUMENT_ID,request.getHead().getFunction());
 						ParamValidatorUtil.checkDocumentId(request.getBody().getDocumentId());
 					}
 
