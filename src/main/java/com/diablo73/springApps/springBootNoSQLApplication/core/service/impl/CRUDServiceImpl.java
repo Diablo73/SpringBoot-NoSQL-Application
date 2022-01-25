@@ -43,13 +43,14 @@ public class CRUDServiceImpl implements CRUDService {
 					public Map<ParametersEnum, String> convertRequest() {
 						Map<ParametersEnum, String> parameters = new HashMap<>();
 						parameters.put(ParametersEnum.DOCUMENT_ID, request.getBody().getDocumentId());
+						parameters.put(ParametersEnum.TABLE_NAME, request.getBody().getTableName());
 
 						return parameters;
 					}
 
 					@Override
 					public String invoke(Map<ParametersEnum, String> parameters) {
-						return crudInnerService.get(parameters.get(ParametersEnum.DOCUMENT_ID));
+						return crudInnerService.get(parameters);
 					}
 
 					@Override

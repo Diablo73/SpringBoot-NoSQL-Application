@@ -3,6 +3,7 @@ package com.diablo73.springApps.springBootNoSQLApplication.constants.enums;
 public enum ParametersEnum {
 
 	DOCUMENT_ID("documentId"),
+	TABLE_NAME("tableName"),
 
 	;
 

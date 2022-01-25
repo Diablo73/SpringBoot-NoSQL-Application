@@ -8,4 +8,5 @@ import lombok.Data;
 public class RequestBody {
 
 	String documentId;
+	String tableName;
 }
