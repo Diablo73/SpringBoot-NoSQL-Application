@@ -13,6 +13,10 @@ public enum APIConstantEnum {
 	GET_RECORD_BY_DOCUMENT_ID("record.documentId", APIPathConstants.GET_RECORD_BY_DOCUMENT_ID, HttpMethod.POST),
 
 
+
+	STUDENT_RECORD_BY_SEARCH_PARAMS("student.search", APIPathConstants.STUDENT_RECORD_BY_SEARCH_PARAMS, HttpMethod.POST),
+
+
 	;
 
 

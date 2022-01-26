@@ -8,6 +8,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriTemplateHandler;
+
+import java.net.URI;
+import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class CoreRestTemplateImpl implements CoreRestTemplate {
@@ -17,9 +23,21 @@ public class CoreRestTemplateImpl implements CoreRestTemplate {
 
 	@Override
 	public String execute(String url, HttpMethod httpMethod, String body) {
+
+		if (url.contains("{") && url.contains("}")) {
+			restTemplate.setUriTemplateHandler(ignoreUriVariables());
+		}
+
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity<String> httpEntity = new HttpEntity(body, headers);
+		HttpEntity<String> httpEntity;
+
+		if (Objects.nonNull(body)) {
+			httpEntity = new HttpEntity(headers);
+		} else {
+			httpEntity = new HttpEntity(body, headers);
+		}
 		headers.set("x-apikey", System.getenv("x-apikey"));
+
 		ResponseEntity<String> response = restTemplate.exchange(
 				url,
 				httpMethod,
@@ -28,6 +46,26 @@ public class CoreRestTemplateImpl implements CoreRestTemplate {
 		);
 
 		return response.getBody();
+	}
+
+	private UriTemplateHandler ignoreUriVariables() {
+		UriTemplateHandler skipVariablePlaceHolderUriTemplateHandler = new UriTemplateHandler() {
+			@Override
+			public URI expand(String uriTemplate, Object... uriVariables) {
+				return retrieveURI(uriTemplate);
+			}
+
+			@Override
+			public URI expand(String uriTemplate, Map<String, ?> uriVariables) {
+				return retrieveURI(uriTemplate);
+			}
+
+			private URI retrieveURI(String uriTemplate) {
+				return UriComponentsBuilder.fromUriString(uriTemplate).build().toUri();
+			}
+		};
+
+		return skipVariablePlaceHolderUriTemplateHandler;
 	}
 
 }

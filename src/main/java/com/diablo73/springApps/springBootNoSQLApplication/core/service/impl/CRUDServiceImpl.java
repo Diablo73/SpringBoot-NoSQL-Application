@@ -35,7 +35,7 @@ public class CRUDServiceImpl implements CRUDService {
 
 					@Override
 					public void validate() {
-						ParamValidatorUtil.checkFunction(APIConstantEnum.GET_RECORD_BY_DOCUMENT_ID,request.getHead().getFunction());
+						ParamValidatorUtil.checkFunction(APIConstantEnum.GET_RECORD_BY_DOCUMENT_ID, request.getHead().getFunction());
 						ParamValidatorUtil.checkDocumentId(request.getBody().getDocumentId());
 					}
 

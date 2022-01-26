@@ -11,6 +11,10 @@ public enum ResultInfoEnum {
 	DOCUMENT_NOT_FOUND("0003", "NO_DOCUMENT", "Document not found!!!"),
 
 
+	SEARCH_PARAM_EMPTY("0101", "NO_PARAMETERS", "No parameters for searching provided!!!"),
+	WRONG_SEARCH_PARAM("0102", "ILLEGAL_SEARCH_PARAM", "Search parameter provided is wrong!!!"),
+
+
 	SUCCESS("1000", "SUCCESS", "Successful!!!"),
 
 	;

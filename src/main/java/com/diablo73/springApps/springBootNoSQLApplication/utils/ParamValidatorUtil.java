@@ -5,6 +5,8 @@ import com.diablo73.springApps.springBootNoSQLApplication.constants.APIConstantE
 import com.diablo73.springApps.springBootNoSQLApplication.constants.ParamConstants;
 import com.diablo73.springApps.springBootNoSQLApplication.constants.enums.ResultInfoEnum;
 
+import java.util.*;
+
 public class ParamValidatorUtil {
 
 
@@ -19,6 +21,16 @@ public class ParamValidatorUtil {
 
 		if (documentId.length() != ParamConstants.DOCUMENT_ID_LENGTH) {
 			throw new ParamValidatorException(ResultInfoEnum.WRONG_DOCUMENT_ID);
+		}
+	}
+
+	public static void checkSearchParams(Map<String, Object> searchParams) {
+
+		if (searchParams.isEmpty()) {
+			throw new ParamValidatorException(ResultInfoEnum.SEARCH_PARAM_EMPTY);
+		}
+		if (searchParams.keySet().stream().noneMatch(ParamConstants.ALLOWED_SEARCH_PARAMS::contains)) {
+			throw new ParamValidatorException(ResultInfoEnum.WRONG_SEARCH_PARAM);
 		}
 	}
 }
