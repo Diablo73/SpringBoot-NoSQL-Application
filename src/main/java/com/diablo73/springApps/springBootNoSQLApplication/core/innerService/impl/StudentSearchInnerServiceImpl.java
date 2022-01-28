@@ -2,9 +2,7 @@ package com.diablo73.springApps.springBootNoSQLApplication.core.innerService.imp
 
 import com.diablo73.springApps.springBootNoSQLApplication.constants.enums.ParametersEnum;
 import com.diablo73.springApps.springBootNoSQLApplication.core.innerService.StudentSearchInnerService;
-import com.diablo73.springApps.springBootNoSQLApplication.core.repository.search.CoreRestTemplate;
 import com.diablo73.springApps.springBootNoSQLApplication.utils.MapperUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class StudentSearchInnerServiceImpl implements StudentSearchInnerService {
-
-	@Autowired
-	private CoreRestTemplate coreRestTemplate;
-
-	private static final String studentsURL = System.getenv("studentsURL");
-	private static final String studentsDBName = System.getenv("studentsDBName");
-	private static final String marksURL = System.getenv("marksURL");
-	private static final String marksDBName = System.getenv("marksDBName");
-	private static final String PATH_SEPARATOR = "/";
-	private static final String QUERY_SEPARATOR = "?q=";
+public class StudentSearchInnerServiceImpl extends CommonInnerServiceImpl implements StudentSearchInnerService {
 
 
 	@Override
@@ -71,7 +59,7 @@ public class StudentSearchInnerServiceImpl implements StudentSearchInnerService 
 	private String getStudentsTableResultString(String parametersString) {
 
 		StringBuilder url = new StringBuilder();
-		url.append(studentsURL).append(studentsDBName).append(QUERY_SEPARATOR).append(parametersString);
+		url.append(STUDENTS_URL).append(STUDENTS_DB_NAME).append(QUERY_SEPARATOR).append(parametersString);
 
 		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
 	}
@@ -79,7 +67,7 @@ public class StudentSearchInnerServiceImpl implements StudentSearchInnerService 
 	private String getMarksTableResultString(String parametersString) {
 
 		StringBuilder url = new StringBuilder();
-		url.append(marksURL).append(marksDBName).append(QUERY_SEPARATOR).append(parametersString);
+		url.append(MARKS_URL).append(MARKS_DB_NAME).append(QUERY_SEPARATOR).append(parametersString);
 
 		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
 	}

@@ -54,7 +54,7 @@ public class AuthFilter implements Filter {
 			String auth64Encoded = httpServletRequest.getHeader("authorization");
 			if (ObjectUtils.allNotNull(auth64Encoded)) {
 				String auth64Decoded = new String(Base64.getDecoder().decode(auth64Encoded.substring(6)));
-				return Arrays.asList(System.getenv("auth").split("\\,")).contains(auth64Decoded);
+				return Arrays.asList(System.getenv("AUTH").split("\\,")).contains(auth64Decoded);
 			} else {
 				return false;
 			}

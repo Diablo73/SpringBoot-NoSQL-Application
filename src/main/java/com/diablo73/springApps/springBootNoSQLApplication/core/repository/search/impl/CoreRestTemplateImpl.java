@@ -29,14 +29,14 @@ public class CoreRestTemplateImpl implements CoreRestTemplate {
 		}
 
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity<String> httpEntity;
+		headers.set("x-apikey", System.getenv("X_API_KEY"));
 
-		if (Objects.nonNull(body)) {
+		HttpEntity<String> httpEntity;
+		if (Objects.isNull(body)) {
 			httpEntity = new HttpEntity(headers);
 		} else {
 			httpEntity = new HttpEntity(body, headers);
 		}
-		headers.set("x-apikey", System.getenv("x-apikey"));
 
 		ResponseEntity<String> response = restTemplate.exchange(
 				url,
