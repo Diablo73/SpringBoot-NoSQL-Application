@@ -79,7 +79,10 @@ public class StudentSearchServiceImpl implements StudentSearchService {
 							String rollNo = String.valueOf(studentData.get(ParametersEnum.ROLL_NO.getField()));
 							for (Map<String, String> markData :marksSearchDataList) {
 								if (rollNo.equals(String.valueOf(markData.get(ParametersEnum.ROLL_NO.getField())))) {
+									studentData.put("_ids", studentData.get("_id"));
 									studentData.putAll(markData);
+									studentData.put("_idm", studentData.get("_id"));
+									studentData.remove("_id");
 									documentList.put(rollNo, studentData);
 								}
 							}

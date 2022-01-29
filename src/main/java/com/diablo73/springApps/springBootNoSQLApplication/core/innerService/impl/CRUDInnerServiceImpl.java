@@ -2,7 +2,6 @@ package com.diablo73.springApps.springBootNoSQLApplication.core.innerService.imp
 
 import com.diablo73.springApps.springBootNoSQLApplication.constants.enums.ParametersEnum;
 import com.diablo73.springApps.springBootNoSQLApplication.core.innerService.CRUDInnerService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +22,6 @@ public class CRUDInnerServiceImpl extends CommonInnerServiceImpl implements CRUD
 		}
 		url.append(PATH_SEPARATOR).append(parameters.get(ParametersEnum.DOCUMENT_ID));
 
-		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, StringUtils.EMPTY);
+		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
 	}
 }
