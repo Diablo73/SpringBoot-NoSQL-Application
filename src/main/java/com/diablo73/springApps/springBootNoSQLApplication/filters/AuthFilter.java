@@ -8,6 +8,7 @@ import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Re
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResponseHead;
 import com.diablo73.springApps.springBootNoSQLApplication.structures.response.ResultInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.cronitor.client.CronitorClient;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Component;
 
@@ -18,11 +19,14 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Map;
 
 @Component("authFilter")
 public class AuthFilter implements Filter {
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
+
+	private final CronitorClient cronitorClient = new CronitorClient(System.getenv("CRONITOR_API_KEY"));
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,6 +42,7 @@ public class AuthFilter implements Filter {
 		if (authCheckPass(httpServletRequest) && pathAndMethodAvailable()) {
 			filterChain.doFilter(servletRequest, servletResponse);
 		} else {
+			cronitorClient.fail(System.getenv("CRONITOR_MONITOR_KEY"),"fail", Map.ofEntries(Map.entry("error_count", 1)));
 			servletResponse.getWriter().write(objectMapper.writeValueAsString(createAuthFailedResponse(httpServletRequest.getServletPath())));
 			return;
 		}
