@@ -5,12 +5,12 @@ import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Re
 
 public interface CRUDService {
 
-	public Response get(Request request);
+	Response get(Request request);
 
-	public Response post(Request request);
+	Response post(Request request);
 
-	public Response put(Request request);
+	Response put(Request request);
 
-	public Response delete(Request request);
+	Response delete(Request request);
 
 }

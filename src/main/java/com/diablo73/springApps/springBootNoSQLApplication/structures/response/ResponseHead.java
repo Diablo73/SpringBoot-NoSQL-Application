@@ -15,6 +15,7 @@ public class ResponseHead {
 
 	String function;
 	String responseTime;
+	String signature;
 
 	public ResponseHead(String apiName) {
 		this.setFunction(apiName);

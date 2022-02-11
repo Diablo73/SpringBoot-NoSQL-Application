@@ -1,6 +1,5 @@
 package com.diablo73.springApps.springBootNoSQLApplication.utils;
 
-import com.diablo73.springApps.springBootNoSQLApplication.structures.response.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,17 +12,17 @@ public class MapperUtil {
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
-	public static Object convert2RequestObject(Map<String, Object> requestMap, Class<?> clazz) {
+	public static Object convertMap2Object(Map<String, Object> map, Class<?> clazz) {
 
-		return objectMapper.convertValue(requestMap, clazz);
+		return objectMapper.convertValue(map, clazz);
 	}
 
-	public static Map<String, Object> convert2ResponseMap(Response response) {
+	public static Map<String, Object> convertObject2Map(Object o) {
 
-		return objectMapper.convertValue(response, Map.class);
+		return objectMapper.convertValue(o, Map.class);
 	}
 
-	public static Map<String, Object> convert2Map(String s) {
+	public static Map<String, Object> convertJsonString2Map(String s) {
 
 		try {
 			return objectMapper.readValue(s, Map.class);
@@ -33,7 +32,7 @@ public class MapperUtil {
 		return new HashMap<>();
 	}
 
-	public static List<Map<String, String>> convert2List(String s) {
+	public static List<Map<String, String>> convertJsonString2List(String s) {
 
 		try {
 			return objectMapper.readValue(s, List.class);
@@ -41,6 +40,16 @@ public class MapperUtil {
 			e.printStackTrace();
 		}
 		return new ArrayList<>();
+	}
+
+	public static String convertObject2JsonString(Object o) {
+
+		try {
+			return objectMapper.writeValueAsString(o);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "{}";
 	}
 
 }

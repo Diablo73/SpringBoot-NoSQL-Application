@@ -21,7 +21,7 @@ public class StudentSearchInnerServiceImpl extends CommonInnerServiceImpl implem
 		String parametersString = convert2String(parameters.toString());
 
 		String studentsTableResultString = getStudentsTableResultString(parametersString);
-		List<Map<String, String>> studentsSearchDataList = MapperUtil.convert2List(studentsTableResultString);
+		List<Map<String, String>> studentsSearchDataList = MapperUtil.convertJsonString2List(studentsTableResultString);
 
 		List<Integer> rollNoList = new ArrayList<>();
 		for (Map<String, String> studentData :studentsSearchDataList) {
@@ -61,7 +61,7 @@ public class StudentSearchInnerServiceImpl extends CommonInnerServiceImpl implem
 		StringBuilder url = new StringBuilder();
 		url.append(STUDENTS_URL).append(STUDENTS_DB_NAME).append(QUERY_SEPARATOR).append(parametersString);
 
-		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
+		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null, null);
 	}
 
 	private String getMarksTableResultString(String parametersString) {
@@ -69,6 +69,6 @@ public class StudentSearchInnerServiceImpl extends CommonInnerServiceImpl implem
 		StringBuilder url = new StringBuilder();
 		url.append(MARKS_URL).append(MARKS_DB_NAME).append(QUERY_SEPARATOR).append(parametersString);
 
-		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
+		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null, null);
 	}
 }

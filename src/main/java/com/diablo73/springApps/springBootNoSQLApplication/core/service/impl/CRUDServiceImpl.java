@@ -58,7 +58,7 @@ public class CRUDServiceImpl implements CRUDService {
 
 						Map<String, Object> resultMap = new HashMap<>();
 						if (result.contains(request.getBody().getDocumentId())) {
-							resultMap.put(request.getBody().getDocumentId(), MapperUtil.convert2Map(result));
+							resultMap.put(request.getBody().getDocumentId(), MapperUtil.convertJsonString2Map(result));
 						}
 						response.getBody().setDocumentList(resultMap);
 						response.getBody().setDocumentCount(resultMap.keySet().size());

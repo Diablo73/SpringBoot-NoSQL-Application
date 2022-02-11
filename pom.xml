@@ -63,6 +63,11 @@
 			<version>7.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.shardingsphere</groupId>
+			<artifactId>sharding-core-common</artifactId>
+			<version>4.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

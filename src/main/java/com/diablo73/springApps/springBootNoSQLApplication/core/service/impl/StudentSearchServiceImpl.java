@@ -72,8 +72,10 @@ public class StudentSearchServiceImpl implements StudentSearchService {
 					@Override
 					public Response convertResponse(Map<String, String> searchDataMap) {
 						Map<String, Object> documentList = new HashMap<>();
-						List<Map<String, String>> studentsSearchDataList = MapperUtil.convert2List(searchDataMap.get(ParametersEnum.STUDENTS_TABLE.getName()));
-						List<Map<String, String>> marksSearchDataList = MapperUtil.convert2List(searchDataMap.get(ParametersEnum.MARKS_TABLE.getName()));
+						List<Map<String, String>> studentsSearchDataList =
+								MapperUtil.convertJsonString2List(searchDataMap.get(ParametersEnum.STUDENTS_TABLE.getName()));
+						List<Map<String, String>> marksSearchDataList =
+								MapperUtil.convertJsonString2List(searchDataMap.get(ParametersEnum.MARKS_TABLE.getName()));
 
 						for (Map<String, String> studentData :studentsSearchDataList) {
 							String rollNo = String.valueOf(studentData.get(ParametersEnum.ROLL_NO.getField()));

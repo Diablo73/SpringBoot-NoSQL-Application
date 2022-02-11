@@ -22,6 +22,6 @@ public class CRUDInnerServiceImpl extends CommonInnerServiceImpl implements CRUD
 		}
 		url.append(PATH_SEPARATOR).append(parameters.get(ParametersEnum.DOCUMENT_ID));
 
-		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null);
+		return coreRestTemplate.execute(url.toString(), HttpMethod.GET, null, null);
 	}
 }
