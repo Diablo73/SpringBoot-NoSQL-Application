@@ -16,10 +16,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 @Component("authFilter")
 public class AuthFilter implements Filter {
@@ -27,6 +24,11 @@ public class AuthFilter implements Filter {
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
 	private final CronitorClient cronitorClient = new CronitorClient(System.getenv("CRONITOR_API_KEY"));
+
+	private final List<String> authNotRequiredAPIs =
+			List.of(APIPathConstants.BLANK,
+					APIPathConstants.DEFAULT_MESSAGE);
+
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -55,7 +57,7 @@ public class AuthFilter implements Filter {
 
 	private boolean authCheckPass(HttpServletRequest httpServletRequest) {
 
-		if (!APIPathConstants.BLANK.equals(httpServletRequest.getServletPath())) {
+		if (!authNotRequiredAPIs.contains(httpServletRequest.getServletPath())) {
 			String auth64Encoded = httpServletRequest.getHeader("authorization");
 			if (ObjectUtils.allNotNull(auth64Encoded)) {
 				String auth64Decoded = new String(Base64.getDecoder().decode(auth64Encoded.substring(6)));
