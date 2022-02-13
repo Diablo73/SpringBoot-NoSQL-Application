@@ -68,6 +68,17 @@
 			<artifactId>sharding-core-common</artifactId>
 			<version>4.1.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.kamon</groupId>
+			<artifactId>kamon-bundle_2.12</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.kamon</groupId>
+			<artifactId>kamon-apm-reporter_2.12</artifactId>
+			<version>2.2.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -94,6 +105,11 @@
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
+					<excludes>
+						<exclude>**/*Application.*</exclude>
+						<exclude>**/template/*.*</exclude>
+						<exclude>**/structures/*.*</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 			<plugin>

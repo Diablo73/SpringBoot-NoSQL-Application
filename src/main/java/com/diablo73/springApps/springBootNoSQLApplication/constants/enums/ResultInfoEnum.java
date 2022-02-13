@@ -9,6 +9,8 @@ public enum ResultInfoEnum {
 	WRONG_FUNCTION("0001", "ILLEGAL_API", "Mismatch in API name and function!!!"),
 	WRONG_DOCUMENT_ID("0002", "ILLEGAL_DOCUMENT_ID", "DocumentId provided is wrong!!!"),
 	DOCUMENT_NOT_FOUND("0003", "NO_DOCUMENT", "Document not found!!!"),
+	DATE_PARSING_ERROR("0004", "DATE_ERROR", ""),
+	INVALID_LIST("0005", "INVALID_LIST", ""),
 
 
 	SEARCH_PARAM_EMPTY("0101", "NO_PARAMETERS", "No parameters for searching provided!!!"),
@@ -21,13 +23,19 @@ public enum ResultInfoEnum {
 
 	private final String resultCode;
 	private final String resultStatus;
-	private final String resultMessage;
+	private	String resultMessage;
 
 
 	ResultInfoEnum(String resultCode, String resultStatus, String resultMessage) {
 		this.resultCode = resultCode;
 		this.resultStatus = resultStatus;
 		this.resultMessage = resultMessage;
+	}
+
+
+	public static ResultInfoEnum getResultInfoEnumWithMessage(ResultInfoEnum resultInfoEnum, String resultMessage) {
+		resultInfoEnum.resultMessage = resultMessage;
+		return resultInfoEnum;
 	}
 
 }

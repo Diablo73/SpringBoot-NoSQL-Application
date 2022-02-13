@@ -1,5 +1,6 @@
 package com.diablo73.springApps.springBootNoSQLApplication;
 
+import com.diablo73.springApps.springBootNoSQLApplication.monitors.KamonMonitor;
 import io.cronitor.client.CronitorClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,7 @@ public class SpringBootNoSQLApplication {
 
 	public static void main(String[] args) throws IOException {
 		try {
+			KamonMonitor.kamonInit();
 			cronitorClient.run(System.getenv("CRONITOR_MONITOR_KEY"),
 					"Initiating SpringBootNoSQLApplication...", Map.ofEntries(Map.entry("count", 1)));
 			SpringApplication.run(SpringBootNoSQLApplication.class, args);
