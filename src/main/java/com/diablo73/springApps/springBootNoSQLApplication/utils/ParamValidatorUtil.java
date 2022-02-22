@@ -33,4 +33,38 @@ public class ParamValidatorUtil {
 			throw new ParamValidatorException(ResultInfoEnum.WRONG_SEARCH_PARAM);
 		}
 	}
+
+	public static void checkDate(Object... date) {
+
+		for (Object o : date) {
+			if (Objects.isNull(o)) {
+				throw new ParamValidatorException(ResultInfoEnum.getResultInfoEnumWithMessage(
+						ResultInfoEnum.DATE_PARSING_ERROR, "Date cannot be null!!!"));
+			}
+		}
+	}
+
+	public static void checkDatePattern(String pattern) {
+
+		if (!DateUtil.PATTERN.contains(pattern)) {
+			throw new ParamValidatorException(ResultInfoEnum.getResultInfoEnumWithMessage(
+					ResultInfoEnum.DATE_PARSING_ERROR, "Pattern cannot be null!!!"));
+		}
+	}
+
+	public static void checkStringNotEmpty(String s, String field) {
+		if (s.isEmpty()) {
+			throw new ParamValidatorException(ResultInfoEnum.getResultInfoEnumWithMessage(
+					ResultInfoEnum.INVALID_STRING, field.concat(" cannot be empty!!!")
+			));
+		}
+	}
+
+	public static void checkListNotEmpty(List<?> list) {
+		if (list.isEmpty()) {
+			throw new ParamValidatorException(ResultInfoEnum.getResultInfoEnumWithMessage(
+					ResultInfoEnum.INVALID_LIST, "List provided cannot be empty!!!"
+			));
+		}
+	}
 }

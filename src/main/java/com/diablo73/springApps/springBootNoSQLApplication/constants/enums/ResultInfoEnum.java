@@ -10,7 +10,9 @@ public enum ResultInfoEnum {
 	WRONG_DOCUMENT_ID("0002", "ILLEGAL_DOCUMENT_ID", "DocumentId provided is wrong!!!"),
 	DOCUMENT_NOT_FOUND("0003", "NO_DOCUMENT", "Document not found!!!"),
 	DATE_PARSING_ERROR("0004", "DATE_ERROR", ""),
-	INVALID_LIST("0005", "INVALID_LIST", ""),
+	INVALID_STRING("0005", "INVALID_STRING", ""),
+	INVALID_LIST("0006", "INVALID_LIST", ""),
+	EMAIL_FAILURE("0007", "EMAIL_FAILURE", ""),
 
 
 	SEARCH_PARAM_EMPTY("0101", "NO_PARAMETERS", "No parameters for searching provided!!!"),
@@ -18,6 +20,7 @@ public enum ResultInfoEnum {
 
 
 	SUCCESS("1000", "SUCCESS", "Successful!!!"),
+	EMAIL_SUCCESS("1001", "EMAIL_SUCCESS", ""),
 
 	;
 

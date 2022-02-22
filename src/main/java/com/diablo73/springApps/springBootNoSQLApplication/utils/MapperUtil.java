@@ -12,6 +12,7 @@ public class MapperUtil {
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
+
 	public static Object convertMap2Object(Map<String, Object> map, Class<?> clazz) {
 
 		return objectMapper.convertValue(map, clazz);
@@ -42,6 +43,16 @@ public class MapperUtil {
 		return new ArrayList<>();
 	}
 
+	public static Object convertJsonString2Object(String s, Class<?> clazz) {
+
+		try {
+			return objectMapper.readValue(s, clazz);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return new HashMap<>();
+	}
+
 	public static String convertObject2JsonString(Object o) {
 
 		try {
@@ -50,6 +61,11 @@ public class MapperUtil {
 			e.printStackTrace();
 		}
 		return "{}";
+	}
+
+	public static Object getFieldFromJsonString(String s, String field) {
+
+		return convertJsonString2Map(s).get(field);
 	}
 
 }

@@ -17,6 +17,10 @@ public enum APIConstantEnum {
 	STUDENT_RECORD_BY_SEARCH_PARAMS("student.search", APIPathConstants.STUDENT_RECORD_BY_SEARCH_PARAMS, HttpMethod.POST),
 
 
+
+	EMAIL_SEND("email.send", APIPathConstants.EMAIL_SEND, HttpMethod.POST),
+	EMAIL_STATUS("email.status", APIPathConstants.EMAIL_STATUS, HttpMethod.POST),
+
 	;
 
 

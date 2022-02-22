@@ -1,5 +1,6 @@
 package com.diablo73.springApps.springBootNoSQLApplication.structures.response;
 
+import com.diablo73.springApps.springBootNoSQLApplication.structures.models.email.EmailStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -18,5 +19,6 @@ public class ResponseBody {
 	ResultInfo resultInfo;
 	Map<String, Object> documentList;
 	Integer documentCount;
+	EmailStatus emailStatus;
 
 }

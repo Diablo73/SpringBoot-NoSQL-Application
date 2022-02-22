@@ -22,7 +22,7 @@ public class CoreRestTemplateImpl implements CoreRestTemplate {
 	@Override
 	public String execute(String url, HttpMethod httpMethod, String body, Map<String, String> addHeaders) {
 
-		if (url.contains("{") && url.contains("}")) {
+		if ((url.contains("{") && url.contains("}")) || url.contains("@")) {
 			restTemplate.setUriTemplateHandler(ignoreUriVariables());
 		}
 

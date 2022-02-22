@@ -46,8 +46,8 @@ public class ReplItDbDrm {
 				field = ReplItDbDrm.class.getDeclaredField(key);
 				field.setAccessible(true);
 				value = (String) field.get(field);
-			} catch (NoSuchFieldException | IllegalAccessException ex) {
-				System.out.println(e.getMessage());
+			} catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException ex) {
+				System.out.println(ex.getMessage());
 			}
 		}
 		return value;
