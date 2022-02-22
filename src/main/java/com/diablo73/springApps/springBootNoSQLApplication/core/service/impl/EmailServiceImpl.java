@@ -15,6 +15,7 @@ import com.diablo73.springApps.springBootNoSQLApplication.template.APIProcessTem
 import com.diablo73.springApps.springBootNoSQLApplication.template.APIProcessTemplateImpl;
 import com.diablo73.springApps.springBootNoSQLApplication.utils.MapperUtil;
 import com.diablo73.springApps.springBootNoSQLApplication.utils.ParamValidatorUtil;
+import com.diablo73.springApps.springBootNoSQLApplication.utils.ThreadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +51,7 @@ public class EmailServiceImpl implements EmailService {
 						String emailResponse = emailInnerService.sendEmail(emailStructure);
 						String messageID = ((EmailStatus) MapperUtil.convertJsonString2Object(emailResponse, EmailStatus.class))
 								.getData().getMessageid();
+						ThreadUtil.sleep(2500);
 						return (EmailStatus) MapperUtil.convertJsonString2Object(emailInnerService.checkMailStatus(messageID), EmailStatus.class);
 					}
 
