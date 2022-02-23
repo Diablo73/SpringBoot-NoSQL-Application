@@ -49,10 +49,13 @@ public class EmailServiceImpl implements EmailService {
 					@Override
 					public EmailStatus invoke(EmailStructure emailStructure) {
 						String emailResponse = emailInnerService.sendEmail(emailStructure);
-						String messageID = ((EmailStatus) MapperUtil.convertJsonString2Object(emailResponse, EmailStatus.class))
+						String messageId = ((EmailStatus) MapperUtil.convertJsonString2Object(emailResponse, EmailStatus.class))
 								.getData().getMessageid();
 						ThreadUtil.sleep(2500);
-						return (EmailStatus) MapperUtil.convertJsonString2Object(emailInnerService.checkMailStatus(messageID), EmailStatus.class);
+						EmailStatus emailStatus = (EmailStatus) MapperUtil.convertJsonString2Object(
+								emailInnerService.checkMailStatus(messageId), EmailStatus.class);
+						emailStatus.getData().setMessageid(messageId);
+						return emailStatus;
 					}
 
 					@Override
@@ -104,7 +107,10 @@ public class EmailServiceImpl implements EmailService {
 
 					@Override
 					public EmailStatus invoke(String messageId) {
-						return (EmailStatus) MapperUtil.convertJsonString2Object(emailInnerService.checkMailStatus(messageId), EmailStatus.class);
+						EmailStatus emailStatus = (EmailStatus) MapperUtil.convertJsonString2Object(
+								emailInnerService.checkMailStatus(messageId), EmailStatus.class);
+						emailStatus.getData().setMessageid(messageId);
+						return emailStatus;
 					}
 
 					@Override
